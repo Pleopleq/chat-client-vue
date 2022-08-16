@@ -6,10 +6,10 @@
     </div>
 
     <div>
-      <form action="">
-        <input type="text" placeholder="Username" />
+      <form @submit.prevent="logIn">
+        <input type="text" placeholder="Username" v-model="username" />
 
-        <input type="password" placeholder="Password" />
+        <input type="password" placeholder="Password" v-model="password" />
 
         <button type="submit">Login</button>
       </form>
@@ -21,8 +21,16 @@
   </section>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { ref } from "vue";
+import UserServices from "../../services/userServices.ts";
+const username = ref("");
+const password = ref("");
+const userServices = new UserServices();
+
+function logIn() {
+  userServices.userLogIn({ username, password });
+}
 </script>
 
 <style></style>
