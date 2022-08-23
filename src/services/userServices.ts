@@ -9,10 +9,22 @@ class UserServices implements IUsersServices {
   userLogIn({ username, password }: IUserCredentials): LoggedUser {
     let loggedUser = {
       username,
+      password,
       isLogged: true,
     };
 
-    console.log(loggedUser);
+    fetch("http://localhost:3002/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loggedUser),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
     return loggedUser;
   }
 }
