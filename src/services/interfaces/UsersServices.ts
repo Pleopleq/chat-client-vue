@@ -3,8 +3,13 @@ interface IUserCredentials {
   password: string;
 }
 
-interface IUsersServices {
-  userLogIn(userCredentials: IUserCredentials): string;
+interface LoggedUser {
+  username: string;
+  isLogged: boolean;
 }
 
-export type { IUsersServices, IUserCredentials };
+interface IUsersServices {
+  userLogIn(userCredentials: IUserCredentials): LoggedUser;
+}
+
+export type { IUsersServices, IUserCredentials, LoggedUser };

@@ -1,13 +1,19 @@
 import {
   IUsersServices,
   IUserCredentials,
+  LoggedUser,
 } from "../services/interfaces/UsersServices";
 
 class UserServices implements IUsersServices {
   constructor() {}
-  userLogIn({ username, password }: IUserCredentials): string {
-    console.log(username, password);
-    return "logged";
+  userLogIn({ username, password }: IUserCredentials): LoggedUser {
+    let loggedUser = {
+      username,
+      isLogged: true,
+    };
+
+    console.log(loggedUser);
+    return loggedUser;
   }
 }
 

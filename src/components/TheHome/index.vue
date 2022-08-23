@@ -21,16 +21,26 @@
   </section>
 </template>
 
-<script setup>
+<script>
 import { ref } from "vue";
 import UserServices from "../../services/userServices.ts";
-const username = ref("");
-const password = ref("");
-const userServices = new UserServices();
 
-function logIn() {
-  userServices.userLogIn({ username, password });
-}
+export default {
+  setup() {
+    const username = ref("");
+    const password = ref("");
+    const userServices = new UserServices();
+
+    function logIn() {
+      userServices.userLogIn({
+        username: username.value,
+        password: password.value,
+      });
+    }
+
+    return { password, username, logIn };
+  },
+};
 </script>
 
 <style></style>
