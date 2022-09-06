@@ -7,9 +7,17 @@ app.use(express.json());
 app.use(cors());
 
 const PORT = 3002;
+const loggedUsers = [];
 
 app.post("/api/login", (req, res) => {
-  return res.json("Logged");
+  const incomingUser = req.body.username;
+
+  if (!loggedUsers.includes(incomingUser)) {
+    loggedUsers.push(req.body.username);
+    return res.json("logged");
+  }
+
+  return res.json("User is already logged in");
 });
 
 app.listen(3002, () => {
