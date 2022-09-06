@@ -1,7 +1,11 @@
 const express = require("express");
 const cors = require("cors");
-
 const app = express();
+const http = require("http");
+
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 
 app.use(express.json());
 app.use(cors());
@@ -18,6 +22,10 @@ app.post("/api/login", (req, res) => {
   }
 
   return res.json("User is already logged in");
+});
+
+io.on("connection", (socket) => {
+  console.log("A user connected");
 });
 
 app.listen(3002, () => {
