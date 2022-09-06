@@ -1,16 +1,14 @@
 import {
   IUsersServices,
   IUserCredentials,
-  LoggedUser,
 } from "../services/interfaces/UsersServices";
 
 class UserServices implements IUsersServices {
   constructor() {}
-  userLogIn({ username, password }: IUserCredentials): LoggedUser {
+  userLogIn({ username, password }: IUserCredentials): void {
     let loggedUser = {
       username,
       password,
-      isLogged: true,
     };
 
     fetch("http://localhost:3002/api/login", {
@@ -25,7 +23,6 @@ class UserServices implements IUsersServices {
       .catch((error) => {
         console.error("Error:", error);
       });
-    return loggedUser;
   }
 }
 

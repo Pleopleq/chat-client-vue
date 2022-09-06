@@ -9,7 +9,7 @@ interface LoggedUser {
 }
 
 interface IUsersServices {
-  userLogIn(userCredentials: IUserCredentials): LoggedUser;
+  userLogIn(userCredentials: IUserCredentials): void;
 }
 
 export type { IUsersServices, IUserCredentials, LoggedUser };

@@ -1,12 +1,15 @@
 const express = require("express");
+const cors = require("cors");
+
 const app = express();
+
 app.use(express.json());
+app.use(cors());
 
 const PORT = 3002;
 
 app.post("/api/login", (req, res) => {
-  console.log(req.body);
-  return res.send("<p>Logged</p>");
+  return res.json("Logged");
 });
 
 app.listen(3002, () => {
